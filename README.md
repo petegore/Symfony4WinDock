@@ -33,6 +33,10 @@ and containers, and let Windows do the match with loopback IP :
 127.0.0.1      symfony4-project.dev
 ```
 
+NOTE : I got issue with this for the moment. My webserver runs fine with localhost, but 
+does NOT recognize my local domain name. It seems to be redirected on 443 HTTPS port.  
+If you got an idea, let me know !
+
 
 ## Notes
 
@@ -44,4 +48,33 @@ added it to the `.gitignore` file. Don't forget to do the same.
 
 
 ## Instantiate Symfony4
-If you use it to create a new Symfony4 project, you can run composer into the PHP container : 
+If you use it to create a new Symfony4 project, you can run composer into the PHP container.
+
+First, remove the existing `public/` folders because Symfony will need to create it.
+
+Then, run a bash into the php container : 
+```
+$ docker exec -t -i symfony4-windock-php /bin/bash
+```
+  
+Into the command prompt opened, run the official Symfony4 composer creation command : 
+```
+root@...:/var/www/symfony# composer create-project symfony/skeleton tmpsf4
+```
+As you can see, we use a `tmpsf4/` folder because composer cannot create the project in 
+our current directory because it's not empty.
+  
+Once the `create-project` instruction is over, let's move the Symfony files onto 
+our current dir.
+```
+root@...:/var/www/symfony# mv tmpsf4/* .
+```
+  
+The Symfony `var/` folder cannot be moved because Docker uses our `var/` folder.  
+It's not a problem, let's remove it, Symfony will create new cache and log later.
+```
+root@...:/var/www/symfony# rm -rf tmpsf4/var/ && rm -f tmpsf4/.gitignore && mv tmpsf4/* . && mv tmpsf4/.env* . && rm -rf tmpsf4
+```
+..
+Now if you browse `http://localhost/` you should be able to see the Symfony4 homepage !
+

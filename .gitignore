@@ -1,3 +1,8 @@
-# Ignoring data folder
 data/mysql/
-var/
+
+###> symfony/framework-bundle ###
+.env
+/public/bundles/
+/var/
+/vendor/
+###< symfony/framework-bundle ###
