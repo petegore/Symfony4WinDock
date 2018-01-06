@@ -1,0 +1,33 @@
+# docker-compose.yml
+version: '2'
+
+services:
+    db:
+        image: mysql
+        ports:
+            - 3306:3306
+        volumes:
+            - "./data/mysql:/var/lib/mysql"
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+        container_name: symfony4-windock-mysql
+    php:
+        build: docker/php7-fpm
+        ports:
+            - 9000:9000
+        links:
+            - db:mysqldb
+        volumes:
+            - ".:/var/www/symfony"
+        container_name: symfony4-windock-php
+    nginx:
+        build: docker/nginx
+        ports:
+            - 80:80
+        links:
+            - php
+        volumes_from:
+            - php
+        volumes:
+            - "./var/log/nginx/:/var/log/nginx"
+        container_name: symfony4-windock-nginx
