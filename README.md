@@ -23,19 +23,15 @@ $ docker-compose up -d
   
 The created server runs at this local URI : 
 ```
-http://symfony4-project.dev
+http://symfony4-project.local
 ```
 It's now your job to **modify your _hosts_ file** to avoid conflict with other projects
 and containers, and let Windows do the match with loopback IP : 
 ```shell
 # C:\Windows\System32\drivers\etc
  
-127.0.0.1      symfony4-project.dev
+127.0.0.1      symfony4-project.local
 ```
-
-NOTE : I got issue with this for the moment. My webserver runs fine with localhost, but 
-does NOT recognize my local domain name. It seems to be redirected on 443 HTTPS port.  
-If you got an idea, let me know !
 
 
 ## Notes
