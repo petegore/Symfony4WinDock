@@ -28,10 +28,3 @@ services:
             - php
         volumes:
             - "./var/log/nginx/:/var/log/nginx"
-    tools:
-        build: docker/utils
-        links:
-            - php
-        volumes:
-            - "./var/tmp/utils:/var/tmp/utils"
-
