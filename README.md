@@ -7,9 +7,30 @@ but I also added some dev tools like Coke, or Make, in a separate container.
 To run this, you need to have Docker for Windows and Docker-Compose installed.
 And that's it.
 
-## Created containers
-You're going to run the following command : 
+## Run it !
+Just run the following commands on the folder root :
 ```bash
 $ docker-compose build
 ```
-Docker is now going to create 4 containers on your machine : 
+
+It will create 3 containers : PHP, MySQL and NGINX.  
+The created server runs at this local URI : 
+```
+http://symfony4-project.dev
+```
+It's now your job to **modify your _hosts_ file** to avoid conflict with other projects
+and containers, and let Windows do the match with loopback IP : 
+```shell
+# C:\Windows\System32\drivers\etc
+ 
+127.0.0.1      symfony4-project.dev
+```
+
+
+## Notes
+
+Note that the Symfony app should be installed in the same root folder. The `docker/` 
+folder will be at the same level as Symfony folders (`public/`, `var/`, `src/`, etc...).
+  
+Mysql will store all it's data into the `data/mysql/` folder, that's why I 
+added it to the `.gitignore` file. Don't forget to do the same.
