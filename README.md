@@ -1,11 +1,16 @@
 # Symfony4 Windows Docker config
 
-The current repository gives you a Docker config to run a Symfony4 application, 
-but I also added some dev tools like Coke, or Make, in a separate container.
+The current repository gives you a Docker config to run a Symfony4 application.
 
 ## What do you need ?
 To run this, you need to have Docker for Windows and Docker-Compose installed.
 And that's it.
+
+## Installation 
+If you already have a Symfony4 application, just clone the `docker/` folder and the `docker-compose.yml` file.
+  
+If you want to start a new Symfony4 project you can clone everything, and then read the last part 
+of the README : "Instantiate Symfony4"
 
 ## Run it !
 Just run the following commands on the folder root :
@@ -71,6 +76,6 @@ It's not a problem, let's remove it, Symfony will create new cache and log later
 ```
 root@...:/var/www/symfony# rm -rf tmpsf4/var/ && rm -f tmpsf4/.gitignore && mv tmpsf4/* . && mv tmpsf4/.env* . && rm -rf tmpsf4
 ```
-..
+  
 Now if you browse `http://localhost/` you should be able to see the Symfony4 homepage !
 
