@@ -1,2 +1,3 @@
 # Ignoring data folder
 data/mysql/
+var/

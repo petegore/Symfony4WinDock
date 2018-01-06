@@ -14,6 +14,13 @@ $ docker-compose build
 ```
 
 It will create 3 containers : PHP, MySQL and NGINX.  
+  
+  Now run : 
+```bash
+$ docker-compose up -d
+```
+  
+  
 The created server runs at this local URI : 
 ```
 http://symfony4-project.dev
@@ -34,3 +41,7 @@ folder will be at the same level as Symfony folders (`public/`, `var/`, `src/`, 
   
 Mysql will store all it's data into the `data/mysql/` folder, that's why I 
 added it to the `.gitignore` file. Don't forget to do the same.
+
+
+## Instantiate Symfony4
+If you use it to create a new Symfony4 project, you can run composer into the PHP container : 
