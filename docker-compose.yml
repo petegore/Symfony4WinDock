@@ -31,3 +31,9 @@ services:
         volumes:
             - "./var/log/nginx/:/var/log/nginx"
         container_name: symfony4-windock-nginx
+    node:
+        build: docker/node
+        environment:
+          - NODE_ENV=dev
+        container_name: symfony4-windock-node
+        tty: true
