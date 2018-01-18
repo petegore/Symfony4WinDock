@@ -1,12 +1,25 @@
 # Symfony4 Windows Docker config
 
-The current repository gives you a Docker config to run a Symfony4 application.
+The current repository gives you a Docker config to run a Symfony4 application, with a bunch 
+of services like : 
+* **MySQL** database
+* **PHP7** FPM to run Symfony
+* **NGING** for the webserver
+* **NodeJS** to use NPM for utilities like Gulp, Webpack or whatever you need.
 
 ## What do you need ?
-To run this, you need to have Docker for Windows and Docker-Compose installed.
+You need to have **Docker** for Windows installed with **Docker-Compose.**  
 And that's it.
 
-## Installation 
+## Removing MySQL
+As Symfony4 is a skeleton without any Doctrine installed, you can remove the MySQL service
+into the `docker-compose.yml` file.  
+  
+**Do not forget to remove the links to the MySQL container into the PHP service config !**
+
+
+## Copy Docker configuration
+
 If you already have a Symfony4 application, just clone the `docker/` folder and the `docker-compose.yml` file.
   
 If you want to start a new Symfony4 project you can clone everything, and then read the last part 
@@ -14,14 +27,19 @@ of the README : "Instantiate Symfony4"
 
 ## Run it !
 Just run the following commands on the folder root :
-```bash
+```sh
 $ docker-compose build
 ```
 
-It will create 3 containers : PHP, MySQL and NGINX.  
+It will create 4 containers : 
+* symfony4-windock-mysql
+* symfony4-windock-php
+* symfony4-windock-nginx
+* symfony4-windock-node
+
   
   Now run : 
-```bash
+```sh
 $ docker-compose up -d
 ```
   
@@ -32,14 +50,17 @@ http://symfony4-project.local
 ```
 It's now your job to **modify your _hosts_ file** to avoid conflict with other projects
 and containers, and let Windows do the match with loopback IP : 
-```shell
+```
 # C:\Windows\System32\drivers\etc
  
 127.0.0.1      symfony4-project.local
 ```
 
+**Note** : we don't use the `.dev` domain because it doesn't work anymore with Google Chrome (redirecting 
+all `.dev` URI to HTTPS).
 
-## Notes
+
+## Important notes
 
 Note that the Symfony app should be installed in the same root folder. The `docker/` 
 folder will be at the same level as Symfony folders (`public/`, `var/`, `src/`, etc...).
