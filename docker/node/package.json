@@ -1,0 +1,13 @@
+{
+  "name": "custom-symfony-project",
+  "version": "1.0.0",
+  "author": "Pete Gore <pierre@petegore.fr>",
+  "description": "Node.JS Docker container for Symfony app",
+  "dependencies": {
+    "gulp": "^4.0.0"
+  },
+  "devDependencies": {
+    "font-awesome": "*",
+    "gulp": "^4.0.0"
+  }
+}
